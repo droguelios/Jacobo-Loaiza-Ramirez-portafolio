@@ -1,0 +1,39 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background-color: rgb(75, 2, 26);
+  background-image:
+    radial-gradient(circle at 15% 20%, rgba(217, 119, 6, 0.18), transparent 40%),
+    radial-gradient(circle at 85% 75%, rgba(225, 29, 72, 0.25), transparent 45%);
+  background-attachment: fixed;
+  color: #ffffff;
+  font-family: "Asimovian", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+}
+
+@keyframes king-crimson-time-erase {
+  0% { opacity: 0; transform: scale(1) skewX(0deg); filter: contrast(100%) hue-rotate(0deg); }
+  20% { opacity: 1; transform: scale(1.06) skewX(-18deg); filter: contrast(250%) hue-rotate(180deg); }
+  45% { opacity: 0.9; transform: scale(1.03) skewX(14deg); filter: contrast(300%) invert(1); }
+  70% { opacity: 0.75; transform: scale(1.08) skewX(-8deg); filter: contrast(200%) hue-rotate(90deg); }
+  100% { opacity: 0; transform: scale(1) skewX(0deg); filter: contrast(100%) hue-rotate(0deg); }
+}
+
+.kc-active {
+  animation: king-crimson-time-erase 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.kc-shake {
+  animation: kc-body-glitch 0.45s steps(3) both;
+}
+
+@keyframes kc-body-glitch {
+  0% { transform: translate(0, 0); }
+  25% { transform: translate(-12px, 4px) skewX(4deg); }
+  50% { transform: translate(14px, -4px) skewX(-6deg); }
+  75% { transform: translate(-6px, 2px); }
+  100% { transform: translate(0, 0); }
+}
