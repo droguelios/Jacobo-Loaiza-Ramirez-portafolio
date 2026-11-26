@@ -37,3 +37,170 @@ html, body {
   75% { transform: translate(-6px, 2px); }
   100% { transform: translate(0, 0); }
 }
+
+.script-folders {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+  align-items: start;
+  gap: 2rem;
+  max-width: 54rem;
+  margin: 2.5rem auto 4rem;
+  padding: 0 1.5rem;
+}
+
+.script-folder {
+  min-width: 0;
+  text-align: center;
+  animation: script-folder-enter 500ms 250ms ease-out both;
+}
+
+.script-folder:nth-child(2) { animation-delay: 360ms; }
+
+.script-folder summary {
+  cursor: pointer;
+  list-style: none;
+  display: grid;
+  grid-template-columns: minmax(0, 18rem);
+  justify-content: center;
+  gap: .75rem;
+  padding: 1.5rem 1rem 1rem;
+  color: #fde68a;
+}
+
+.script-folder summary::-webkit-details-marker { display: none; }
+.script-folder summary:focus-visible { outline: 2px solid currentColor; }
+
+.script-folder img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: .4rem;
+}
+
+.script-cover {
+  box-shadow: 5px -5px 0 #b4784e, 10px -10px 0 #75432d;
+  transform-origin: center bottom;
+  transition: transform 240ms ease, box-shadow 240ms ease;
+}
+
+@media (hover: hover) {
+  .script-folder details:not([open]) summary:hover .script-cover {
+    transform: translateY(-.45rem) rotate(-2deg);
+    box-shadow: 9px -5px 0 #b4784e, 18px -10px 0 #75432d;
+  }
+}
+
+.script-folder details:not([open]) summary:focus-visible .script-cover {
+  transform: translateY(-.45rem) rotate(-2deg);
+  box-shadow: 9px -5px 0 #b4784e, 18px -10px 0 #75432d;
+}
+
+.script-folder details[open] .script-cover {
+  transform: rotate(-2deg);
+  box-shadow: 2px -2px 0 #b4784e, 4px -4px 0 #75432d;
+}
+
+.script-close,
+.script-folder details[open] .script-open { display: none; }
+.script-folder details[open] .script-close { display: inline; }
+
+.script-pages {
+  display: grid;
+  justify-items: center;
+  gap: 1rem;
+  padding-inline: 1rem;
+}
+
+.script-pages img { max-width: 18rem; }
+
+.script-folder details[open] .script-pages img {
+  animation: script-page-reveal 320ms ease-out both;
+}
+
+.script-folder details[open] .script-pages img + img {
+  animation-delay: 90ms;
+}
+
+@keyframes script-page-reveal {
+  from { opacity: 0; transform: translateY(-.75rem) scale(.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes script-folder-enter {
+  from { opacity: .25; transform: translateY(1.25rem) rotate(-2deg); }
+  to { opacity: 1; transform: translateY(0) rotate(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .script-folder,
+  .script-folder details[open] .script-pages img { animation: none; }
+  .script-cover { transition: none; }
+}
+
+.film-showcase {
+  width: min(100% - 2rem, 58rem);
+  margin: 0 auto;
+  padding-block: clamp(2.5rem, 7vw, 5.5rem);
+  text-align: center;
+}
+
+.film-heading {
+  margin: 0 0 clamp(1.5rem, 4vw, 2.75rem);
+  font-size: clamp(2.1rem, 6vw, 4.5rem);
+  line-height: 1.05;
+  overflow-wrap: anywhere;
+}
+
+.film-heading::after {
+  content: "";
+  display: block;
+  width: 3rem;
+  height: 2px;
+  margin: 1rem auto 0;
+  background: #f6bc78;
+}
+
+.film-list {
+  display: grid;
+  gap: clamp(3rem, 8vw, 6rem);
+}
+
+.film-screen {
+  padding: clamp(.35rem, 1.2vw, .75rem);
+  border: 1px solid rgb(255 218 180 / 35%);
+  border-radius: 1rem;
+  background: linear-gradient(135deg, #3b2030, #180e16 55%, #311524);
+  box-shadow: 0 1.25rem 3rem rgb(0 0 0 / 40%);
+}
+
+.film-screen iframe {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  border-radius: .55rem;
+  background: #080609;
+}
+
+.film-link {
+  display: inline-block;
+  margin-top: 1.35rem;
+  padding: .55rem 1rem;
+  border: 1px solid rgb(255 218 180 / 35%);
+  border-radius: .5rem;
+  color: #ffdab4;
+  transition: background-color 180ms ease;
+}
+
+.film-link:hover,
+.film-link:focus-visible { background-color: rgb(255 218 180 / 15%); }
+
+@media (prefers-reduced-motion: no-preference) {
+  .film-heading { animation: film-enter 450ms 180ms ease-out both; }
+  .film-screen { animation: film-enter 600ms 280ms ease-out both; }
+}
+
+@keyframes film-enter {
+  from { opacity: .35; transform: translateY(.85rem); }
+  to { opacity: 1; transform: translateY(0); }
+}
