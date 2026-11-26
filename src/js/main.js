@@ -1,10 +1,15 @@
-const app = document.getElementById("app");
+let app = document.querySelector("main#app");
 const overlay = document.getElementById("kc-overlay");
 const nav = document.querySelector("nav");
 const sound = new Audio(new URL("../../public/videos/King Crimson Sound Effect.mp3", document.currentScript.src));
 sound.volume = 0.6;
 let pendingNavigation;
 let animationTimer;
+let renderedUrl = location.href;
+const navigationError = document.createElement("p");
+navigationError.setAttribute("role", "status");
+navigationError.className = "px-6 py-4 text-amber-200";
+navigationError.textContent = "No se pudo cargar la vista. Puedes volver a intentarlo desde el menú.";
 
 function playTransition() {
   clearTimeout(animationTimer);
@@ -30,18 +35,23 @@ async function loadView(url, pushHistory) {
     const response = await fetch(url, { signal: request.signal });
     if (!response.ok) throw new Error("No se pudo cargar la vista");
     const page = new DOMParser().parseFromString(await response.text(), "text/html");
-    const content = page.getElementById("app");
-    if (!content) throw new Error("La vista no contiene #app");
+    const content = page.querySelector("main#app");
+    if (!content) throw new Error("La vista no contiene main#app");
+    const nextFooter = page.querySelector("body > footer");
     if (request.signal.aborted) return;
 
-    if (pushHistory) history.pushState(null, "", url);
-    app.replaceChildren(...content.childNodes);
+    if (pushHistory && url !== location.href) history.pushState(null, "", url);
+    document.querySelector("body > footer")?.remove();
+    app.replaceWith(content);
+    app = content;
+    if (nextFooter) app.after(nextFooter);
+    navigationError.remove();
+    renderedUrl = url;
     document.title = page.title;
     window.scrollTo(0, 0);
   } catch {
     if (request.signal.aborted) return;
-    if (pushHistory) location.assign(url);
-    else location.reload();
+    app.before(navigationError);
   }
 }
 
@@ -55,7 +65,7 @@ if (location.protocol !== "file:") {
         event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
 
     event.preventDefault();
-    if (link.href === location.href) {
+    if (link.href === location.href && link.href === renderedUrl) {
       pendingNavigation?.abort();
       return;
     }

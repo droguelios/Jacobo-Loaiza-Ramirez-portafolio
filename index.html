@@ -4,25 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jacobo Loaiza | Productor Editor Audiovisual</title>
+    <link rel="icon" type="image/png" href="./public/images/66ed3d860c60d9effcfabdd5c3e12b10.jpg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Asimovian&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="./src/style/style.css">
 </head>
-<body class="text-white min-h-screen font-['Asimovian',sans-serif]">
-    <header>
-        <nav class="py-12 px-6">
+<body class="text-white min-h-screen flex flex-col font-['Asimovian',sans-serif]">
+    <header class="sticky top-0 z-40 bg-black/40 backdrop-blur-md border-b border-white/10">
+        <nav class="py-8 px-6">
             <ul class="flex flex-wrap justify-center items-center gap-8 md:gap-20 text-lg md:text-xl">
-                <li><a href="./index.html" class="hover:text-amber-200 transition-colors">sobre mi</a></li>
+                <li><a href="./index.html" class="hover:text-amber-200 transition-colors">Sobre mí</a></li>
                 <li><a href="./src/views/audiovisual.html" class="hover:text-amber-200 transition-colors">Audiovisuales</a></li>
-                <li><a href="./src/views/photography.html" class="hover:text-amber-200 transition-colors">Fotografía</a></li>
-                <li><a href="./src/views/contact.html" class="hover:text-amber-200 transition-colors">Contacto</a></li>
+                <li><a href="./src/views/guiones.html" class="hover:text-amber-200 transition-colors">Guiones</a></li>
             </ul>
         </nav>
     </header>
-    <div id="app">
-        <main class="px-8 md:px-20 mt-16">
+
+    <main id="app" class="flex-1 px-8 md:px-20 mt-16">
             <div class="flex flex-col md:flex-row items-center justify-between gap-10">
                 <section class="max-w-2xl">
                     <h1 class="text-5xl md:text-7xl font-bold tracking-wide leading-tight">
@@ -39,12 +39,21 @@
                     <img class="w-full rounded-2xl object-cover shadow-xl" src="./public/images/574300179_3092770040883843_3875193616335813419_n.jpg" alt="Jacobo Loaiza">
                 </picture>
             </div>
-            <h2 class="text-5xl p-12 m-4 text-center">"El baby"</h2>
+            <h2 class="text-5xl pt-12 pb-16 text-center">"El baby"</h2>
         </main>
-        <footer>
-            <h2>Mas</h2>
-        </footer>
-    </div>
+    <footer class="bg-black py-10 px-6 text-center border-t border-white/10 mt-auto">
+        <h2 class="text-lg font-bold mb-6">Mis redes &amp; número de contacto</h2>
+        <div class="flex flex-wrap justify-center items-center gap-6">
+            <a target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/bopet_joestar/" class="hover:text-amber-200 transition-colors">Instagram</a>
+            <a target="_blank" rel="noopener noreferrer" href="https://web.facebook.com/jacobo.loaizaramirez?locale=es_LA" class="hover:text-amber-200 transition-colors">Facebook</a>
+            <a target="_blank" rel="noopener noreferrer" href="https://wa.me/573243900863?text=Hola%20Jacobo,%20vi%20tu%20portafolio%20y%20me%20gustar%C3%ADa%20cotizar%20un%20proyecto" class="px-4 py-2 rounded-lg bg-amber-200 text-zinc-950 font-bold hover:bg-amber-300 transition-colors">
+                WhatsApp: +57 324 3900863
+            </a>
+            <h3>jaco0421@gmail.com</h3>
+        </div>
+        <p class="text-sm text-zinc-400 mt-6">De dónde soy: Medellín, Colombia</p>
+    </footer>
+
     <div id="kc-overlay" class="fixed inset-0 z-50 pointer-events-none opacity-0 bg-red-600/80 mix-blend-difference"></div>
     <script src="./src/js/main.js" defer></script>
 </body>
